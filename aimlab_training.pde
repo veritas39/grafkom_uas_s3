@@ -6,6 +6,7 @@ float targetSpeed = 2;
 int gameDuration = 60; // Durasi permainan dalam detik
 int startTime; // Waktu mulai permainan
 boolean inGame = false; // Status permainan
+boolean isEasy = false;
 
 void setup() {
   size(800, 800);
@@ -43,6 +44,14 @@ void draw() {
   }
 }
 
+void keyPressed() {
+  if (keyCode == ENTER) {
+    gameDuration = 0; //set time ke nol, langsung keluar scorenya
+  }
+  if (keyCode == 32) { //keyCode 32 adalah SPACE pada keyboard
+    inGame = false;  // Set inGame ke false, langsung ke home screen
+  }
+}
 
 void drawHomeScreen() {
   fill(0);
@@ -68,19 +77,36 @@ void spawnTarget() {
   targetY = int(random(targetSize/2, height - targetSize/2));
   targetClicked = false;
 }
-void mouseClicked() {
-  if (!targetClicked) {
-    // Cek apakah klik berada di dalam target
-    float distance = dist(mouseX, mouseY, targetX, targetY);
-    
-    if (distance < targetSize/2) {
-      targetClicked = true;
-      score++;
-      spawnTarget();
+
+void mousePressed() {
+  if (!inGame) {
+    // Check if the easy button is clicked
+    if (mouseX > width/3 - 10 && mouseX < width/3 + 90 && mouseY > height/2 && mouseY < height/2 + 50) {
+      isEasy = true;
+      startGame(30000); // Easy mode: 30 seconds
+    }
+    // Check if the hard button is clicked
+    else if (mouseX > width/2 + 50 && mouseX < width/2 + 150 && mouseY > height/2 && mouseY < height/2 + 50) {
+      isEasy = false;
+      startGame(15000); // Hard mode: 15 seconds
     }
   } else {
-    // Jika sudah mengklik target sebelumnya, reset game
-    targetClicked = false;
-    spawnTarget();
+    // Check if game time is still within the allowed duration
+    if (millis() - startTime < gameDuration) {
+      if (!targetClicked) {
+        // Cek apakah klik berada di dalam target
+        float distance = dist(mouseX, mouseY, targetX, targetY);
+        
+        if (distance < targetSize/2) {
+          targetClicked = true;
+          score++;
+          spawnTarget();
+        }
+      } else {
+        // Jika sudah mengklik target sebelumnya, reset game
+        targetClicked = false;
+        spawnTarget();
+      }
+    }
   }
 }
