@@ -1,5 +1,7 @@
+import ddf.minim.*;
+
 int targetX, targetY; // Koordinat target
-int targetSize = 30; // Ukuran target
+int targetSize = 50; // Ukuran target
 boolean targetClicked = false; // Apakah target diklik
 int score = 0; // Skor pemain
 int gameDuration = 60; // Durasi permainan dalam detik
@@ -9,11 +11,15 @@ boolean isEasy = false;
 float targetSpeed = 2.5; // Kecepatan pergerakan target
 float targetDirectionX = 1; // Arah pergerakan target (1 untuk ke kanan, -1 untuk ke kiri)
 float targetDirectionY = 1; // Arah pergerakan target (1 untuk ke bawah, -1 untuk ke atas)
+Minim shootSound;
+AudioPlayer player;
 
 void setup() {
   size(800, 800);
   textSize(24);
   textAlign(CENTER, CENTER);
+  shootSound = new Minim(this);
+  player = shootSound.loadFile("vandalShoot.mp3");
 }
 
 void draw() {
@@ -129,6 +135,8 @@ void mousePressed() {
           targetClicked = true;
           score++;
           spawnTarget();
+          player.rewind();
+          player.play();
         }
       } else {
         // Jika sudah mengklik target sebelumnya, reset game
