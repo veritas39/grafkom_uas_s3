@@ -52,6 +52,15 @@ void draw() {
   }
 }
 
+void keyPressed() {
+  if (keyCode == ENTER) {
+    gameDuration = 0; // set time ke nol, langsung muncul score
+  }
+  if (keyCode == 32) { //keyCode 32 adalah SPACE pada keyboard
+    inGame = false;  // Set inGame ke false, langsung muncul halaman homescreen drawHomeScreen()
+  }
+}
+
 void drawHomeScreen() {
   fill(0);
   textSize(36);
