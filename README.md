@@ -1,11 +1,11 @@
 # Grafika Komputer Tugas Besar UAS Semester 3 (Tiga)
 
 **Anggota Kelompok:**
-1. Sep Sarip Hidayattuloh (2207411011)
-2. Nabila Aulya Fakhrunnisaa (2207411014)
-3. Najma Nur Azzahra (2207411018)
-4. Muhammad Bryan (2207411026)
-5. Asiwidia Simanjuntak (2207411030)
+1. Sep Sarip Hidayattuloh (2207411011) - sepsarip
+2. Nabila Aulya Fakhrunnisaa (2207411014) - nabilaulyaf
+3. Najma Nur Azzahra (2207411018) - najmanurazzahra
+4. Muhammad Bryan (2207411026) - veritas39
+5. Asiwidia Simanjuntak (2207411030) - widia2807
 
 ## sekilas tentang game:
 game ini adalah game penunjang untuk orang orang yang bermain game first person shooter (fps), jadi gamer bisa melatih reaksi dan akurasi mereka untuk mengenai target.
@@ -24,3 +24,14 @@ game ini adalah game penunjang untuk orang orang yang bermain game first person 
 1. ENTER untuk mengatur durasi menjadi nol (menghentikan game secara paksa dan akan menampilkan score yang telah diraih).
 2. SPACE untuk kembali ke tampilan home screen.
 3. ESC untuk keluar dari game.
+
+
+## Preview game
+### Home screen
+![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/71e9e771-c6bc-41e0-928a-fc6ca8bfb99f)
+
+### Ingame
+![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/1661955e-47f7-4d6c-9ac7-e9aede3dcae5)
+
+### Ending screen
+![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/ddcd528c-1e8d-433f-baba-dcb831e764a8)
