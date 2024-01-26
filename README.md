@@ -14,14 +14,15 @@ game ini adalah game penunjang untuk orang orang yang bermain game first person 
 https://processing.org/
 
 ## **Diperlukan library Minim untuk play audio saat program berjalan**
-1. How to install Minim library:
-2. Open Processing.
-3. Click "Sketch" on navbar.
-4. Click Import Library > Manage Libraries.
-5. Search "Minim" and install.
-6. Wait until complete.
-7. Close the install page.
-8. Done.
+**How to install Minim library:**
+
+1. Open Processing.
+2. Click "Sketch" on navbar.
+3. Click Import Library > Manage Libraries.
+4. Search "Minim" and install.
+5. Wait until complete.
+6. Close the install page.
+7. Done.
 
 ## keybind:
 1. ENTER untuk mengatur durasi menjadi nol (menghentikan game secara paksa dan akan menampilkan score yang telah diraih).
