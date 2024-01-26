@@ -10,6 +10,9 @@
 ## sekilas tentang game:
 game ini adalah game penunjang untuk orang orang yang bermain game first person shooter (fps), jadi gamer bisa melatih reaksi dan akurasi mereka untuk mengenai target.
 
+## Download Processing
+https://processing.org/
+
 ## **Diperlukan library Minim untuk play audio saat program berjalan**
 1. How to install Minim library:
 2. Open Processing.
