@@ -1,7 +1,55 @@
+int targetX, targetY; // Koordinat target
+int targetSize = 30; // Ukuran target
+boolean targetClicked = false; // Apakah target diklik
+int score = 0; // Skor pemain
+float targetSpeed = 2;
+int gameDuration = 60; // Durasi permainan dalam detik
+int startTime; // Waktu mulai permainan
+boolean gameStarted = false; // Status permainan
+
 void setup() {
   size(800, 800);
   textSize(24);
   textAlign(CENTER, CENTER);
+}
+
+void draw() {
+  background(255);
+  
+  if (gameStarted) {
+    if (!targetClicked) {
+      fill(255, 0, 0); // Warna target
+      ellipse(targetX, targetY, targetSize, targetSize); // Gambar target
+
+      // Animasi pergerakan target
+      targetX += targetSpeed;
+
+      // Ubah arah jika target mencapai tepi layar
+      if (targetX > width - targetSize/2 || targetX < targetSize/2) {
+        targetSpeed *= -1; // Ubah arah
+      }
+    }
+
+    fill(0);
+    text("Score: " + score, width/2, 30); // Tampilkan skor
+
+    // Hitung waktu yang telah berlalu
+    int elapsedTime = millis() / 1000 - startTime;
+    
+    // Hitung sisa waktu
+    int remainingTime = max(0, gameDuration - elapsedTime);
+    
+    // Tampilkan waktu di tengah layar
+    text("Time: " + remainingTime, width/2, height/2);
+
+    // Cek apakah waktu habis
+    if (remainingTime == 0) {
+      gameStarted = false;
+      text("Game Over! Press any key to play again.", width/2, height/2 + 40);
+    }
+  } else {
+    text("Press any key to start the game", width/2, height/2);
+  }
 }
 
 void drawHomeScreen() {
