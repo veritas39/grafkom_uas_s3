@@ -2,11 +2,13 @@ int targetX, targetY; // Koordinat target
 int targetSize = 30; // Ukuran target
 boolean targetClicked = false; // Apakah target diklik
 int score = 0; // Skor pemain
-float targetSpeed = 2;
 int gameDuration = 60; // Durasi permainan dalam detik
 int startTime; // Waktu mulai permainan
 boolean inGame = false; // Status permainan
 boolean isEasy = false;
+float targetSpeed = 2.5; // Kecepatan pergerakan target
+float targetDirectionX = 1; // Arah pergerakan target (1 untuk ke kanan, -1 untuk ke kiri)
+float targetDirectionY = 1; // Arah pergerakan target (1 untuk ke bawah, -1 untuk ke atas)
 
 void setup() {
   size(800, 800);
@@ -26,15 +28,32 @@ void draw() {
       if (!targetClicked) {
         fill(255, 0, 0); // Warna target
         ellipse(targetX, targetY, targetSize, targetSize); // Gambar target
-
-        fill(0);
-        text("Score: " + score, 70, 30); // Tampilkan skor
-      
-        // Draw visual timer
-        int remainingTime = gameDuration - (millis() - startTime);
-        int seconds = ceil(remainingTime / 1000.0);
-        text("Time: " + seconds + "s", width - 120, 30);
+        
+        if(!isEasy){
+          // Update target position based on direction and speed
+          targetX += targetDirectionX * targetSpeed;
+          targetY += targetDirectionY * targetSpeed;
+  
+          // Check and update target direction to prevent going beyond canvas bounds
+          if (targetX - targetSize/2 <= 0 || targetX + targetSize/2 >= width) {
+            targetDirectionX *= -1; // Reverse direction on reaching left or right edge
+            targetX = constrain(targetX, targetSize/2, width - targetSize/2);
+    
+          }
+          if (targetY - targetSize/2 <= 0 || targetY + targetSize/2 >= height) {
+            targetDirectionY *= -1; // Reverse direction on reaching top or bottom edge
+            targetY = constrain(targetY, targetSize/2, height - targetSize/2);
+          }
+        }
       }
+
+      fill(0);
+      text("Score: " + score, 70, 30); // Tampilkan skor
+      
+      // Draw visual timer
+      int remainingTime = gameDuration - (millis() - startTime);
+      int seconds = ceil(remainingTime / 1000.0);
+      text("Time: " + seconds + "s", width - 120, 30);
     } else {
       // If time is up, display final score in the middle of the screen
       textAlign(CENTER, CENTER);
@@ -56,7 +75,7 @@ void keyPressed() {
 void drawHomeScreen() {
   fill(0);
   textSize(36);
-  text("Target Clicker Game", width/2, height/2 - 50);
+  text("Aim Training Game", width/2, height/2 - 50);
   
   // Easy button
   fill(100, 200, 100);
@@ -69,6 +88,15 @@ void drawHomeScreen() {
   rect(width/2 + 50, height/2, 100, 50);
   fill(0);
   text("Hard", width/2 + 100, height/2 + 25);
+}
+
+void startGame(int duration) {
+  inGame = true;
+  gameDuration = duration;
+  startTime = millis();
+  score = 0;
+  spawnTarget();
+  cursor(CROSS);
 }
 
 void spawnTarget() {
