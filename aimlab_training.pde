@@ -5,7 +5,7 @@ int score = 0; // Skor pemain
 float targetSpeed = 2;
 int gameDuration = 60; // Durasi permainan dalam detik
 int startTime; // Waktu mulai permainan
-boolean gameStarted = false; // Status permainan
+boolean inGame = false; // Status permainan
 
 void setup() {
   size(800, 800);
@@ -16,50 +16,33 @@ void setup() {
 void draw() {
   background(255);
   
-  if (gameStarted) {
-    if (!targetClicked) {
-      fill(255, 0, 0); // Warna target
-      ellipse(targetX, targetY, targetSize, targetSize); // Gambar target
-
-      // Animasi pergerakan target
-      targetX += targetSpeed;
-
-      // Ubah arah jika target mencapai tepi layar
-      if (targetX > width - targetSize/2 || targetX < targetSize/2) {
-        targetSpeed *= -1; // Ubah arah
-      }
-    }
-
-    fill(0);
-    text("Score: " + score, width/2, 30); // Tampilkan skor
-
-    // Hitung waktu yang telah berlalu
-    int elapsedTime = millis() / 1000 - startTime;
-    
-    // Hitung sisa waktu
-    int remainingTime = max(0, gameDuration - elapsedTime);
-    
-    // Tampilkan waktu di tengah layar
-    text("Time: " + remainingTime, width/2, height/2);
-
-    // Cek apakah waktu habis
-    if (remainingTime == 0) {
-      gameStarted = false;
-      text("Game Over! Press any key to play again.", width/2, height/2 + 40);
-    }
+  if (!inGame) {
+    drawHomeScreen();
+    cursor(ARROW);
   } else {
-    text("Press any key to start the game", width/2, height/2);
+    // Check if game time is still within the allowed duration
+    if (millis() - startTime < gameDuration) {
+      if (!targetClicked) {
+        fill(255, 0, 0); // Warna target
+        ellipse(targetX, targetY, targetSize, targetSize); // Gambar target
+
+        fill(0);
+        text("Score: " + score, 70, 30); // Tampilkan skor
+      
+        // Draw visual timer
+        int remainingTime = gameDuration - (millis() - startTime);
+        int seconds = ceil(remainingTime / 1000.0);
+        text("Time: " + seconds + "s", width - 120, 30);
+      }
+    } else {
+      // If time is up, display final score in the middle of the screen
+      textAlign(CENTER, CENTER);
+      textSize(36);
+      text("Game Over!\nYour Score: " + score + "\n\nPress SPACE to go to home", width/2, height/2);
+    }
   }
 }
 
-void keyPressed() {
-  if (keyCode == ENTER) {
-    gameDuration = 0; // set time ke nol, langsung muncul score
-  }
-  if (keyCode == 32) { //keyCode 32 adalah SPACE pada keyboard
-    inGame = false;  // Set inGame ke false, langsung muncul halaman homescreen drawHomeScreen()
-  }
-}
 
 void drawHomeScreen() {
   fill(0);
