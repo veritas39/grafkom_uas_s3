@@ -31,7 +31,8 @@ game ini adalah game penunjang untuk orang orang yang bermain game first person 
 ![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/71e9e771-c6bc-41e0-928a-fc6ca8bfb99f)
 
 ### Ingame
-![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/1661955e-47f7-4d6c-9ac7-e9aede3dcae5)
+![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/0d7fe6ac-37c5-4bbe-867c-62b0ce70903a)
+
 
 ### Ending screen
 ![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/ddcd528c-1e8d-433f-baba-dcb831e764a8)
