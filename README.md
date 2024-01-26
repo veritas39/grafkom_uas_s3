@@ -39,3 +39,7 @@ https://processing.org/
 
 ### Ending screen
 ![image](https://github.com/veritas39/grafkom_uas_s3/assets/155815344/ddcd528c-1e8d-433f-baba-dcb831e764a8)
+
+### Sample Gameplay
+https://github.com/veritas39/grafkom_uas_s3/assets/63574047/69daa7e8-3081-4076-9b62-13cfd5723668
+
